@@ -1,0 +1,19 @@
+{
+    "name": "wilson/proyecto33",
+    "description": "proyecto con  POO",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./clases"
+        }
+    },
+    "authors": [
+        {
+            "name": "wilson alexander",
+            "email": "wilgm0kdev@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^3.9"
+    }
+}
