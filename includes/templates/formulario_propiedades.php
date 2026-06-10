@@ -10,12 +10,12 @@
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" accept="image/jpeg, image/png" name="propiedad[imagen]">
 
-    <?php if($propiedad->imagen){ ?>
+    <?php if ($propiedad->imagen) { ?>
         <img src="/imagenes/<?php echo $propiedad->imagen ?>" class="imagen-small">
     <?php } ?>
 
     <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" name="propiedad[descripcion]"><?php echo s( $propiedad->descripcion); ?></textarea>
+    <textarea id="descripcion" name="propiedad[descripcion]"><?php echo s($propiedad->descripcion); ?></textarea>
 
 </fieldset>
 
@@ -33,5 +33,15 @@
 </fieldset>
 <fieldset>
     <legend>Vendedor</legend>
-    
+    <label for="vendedor">Vendedor</label>
+    <select name="propiedad[vendedorId]" id=vendedor">
+
+        <option selected value="">--Seleccione--</option>
+        <?php foreach ($vendedores as $vendedor) { ?>
+            <option
+                <?php echo $propiedad->vendedorId === $vendedor->id ? 'selected': '' ;?>
+                value="<?php echo s($vendedor->id); ?>"><?php echo s($vendedor->nombre) . " " . s($vendedor->apellido); ?>
+            </option>
+        <?php } ?>
+    </select>
 </fieldset>
