@@ -5,11 +5,33 @@ use App\Vendedor;
 
 estaAutenticado();
 
-$vendedor = new Vendedor();
+//validar que sea un id valido
+$id = $_GET['id'];
+$id = filter_var($id, FILTER_VALIDATE_INT);
+
+if(!$id){
+    header('Location: /admin');
+}
+
+//obtener el arreglo de vendedor desde la base de datos
+$vendedor = Vendedor::find($id);
+
+
 
 $errores = Vendedor::getErrores();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    //asignar los valores
+    $args = $_POST['vendedor'];
+    //sincroniza el objeto en memoria
+    $vendedor->sincronizar($args);
+    //validacion
+    $errores= $vendedor->validar();
+
+    if(empty($errores)){
+        $vendedor->guardar();
+    }
 }
 
 incluirTemplate('header');
